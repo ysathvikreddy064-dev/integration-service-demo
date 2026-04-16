@@ -25,24 +25,40 @@ Clean separation of concerns
 This is a realistic example of how I build integration services in production.
 
 🧱 2. Architecture Overview
+
 Client
+
   ↓
+  
 [ExternalUserController] → Validates input, logs request
+
   ↓
+  
 [ExternalUserService] → Calls external API using WebClient
+
   ↓
+  
 [Retry Layer] → Retries transient failures (timeouts, 5xx)
+
   ↓
+  
 [Exception Handler] → Maps errors to clean API responses
+
   ↓
+  
 [Correlation Filter] → Adds correlationId to every log line
+
 
 Why this architecture matters
 
 Controller stays thin → only HTTP concerns
+
 Service handles integration logic → easier to test & maintain
+
 Retry layer → protects against flaky external systems
+
 Exception handler → consistent error responses
+
 Correlation ID → trace a request across multiple services
 
 This is the exact pattern used in modern microservice ecosystems.
