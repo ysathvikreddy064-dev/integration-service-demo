@@ -3,6 +3,7 @@
 This service demonstrates how I design integration-heavy backend systems—the exact type of systems MTI builds and maintains.
 It focuses on resilience, observability, clean architecture, and debuggability, which are critical for real-world service-to-service communication.
 
+
 🧩 1. What This Service Does
 
 This microservice exposes:
@@ -46,6 +47,8 @@ Correlation ID → trace a request across multiple services
 
 This is the exact pattern used in modern microservice ecosystems.
 
+
+
 🌐 3. External API Integration (WebClient)
 
 The service uses Spring WebClient, a non-blocking HTTP client ideal for integration-heavy workloads.
@@ -59,6 +62,8 @@ Why WebClient?
 Reactive & efficient
 Better for high-throughput integrations
 Built-in support for reactive error handling
+
+
 🔁 4. Retry Logic (Spring Retry)
 
 The service retries 3 times when:
@@ -78,6 +83,7 @@ Retry annotation:
 Why retries matter
 External systems fail—that’s normal.
 Retries smooth out transient issues and prevent unnecessary outages.
+
 
 ⚠️ 5. Error Handling
 
@@ -111,6 +117,8 @@ Why this matters
 Predictable API behavior
 Cleaner controllers
 Easier debugging
+
+
 📊 6. Logging & Observability
 
 Every request includes a correlationId:
@@ -127,6 +135,7 @@ Example log:
 Why this matters
 This is how real distributed systems are debugged—especially in integration-heavy environments like MTI.
 
+
 📦 7. Consistent API Response Wrapper
 
 All responses follow:
@@ -140,32 +149,32 @@ All responses follow:
 This makes frontend and downstream services easier to integrate.
 
 🧪 8. How to Run
+
 mvn clean spring-boot:run
-
 Service runs at:
-
 http://localhost:8082
+
+
 🧠 9. Troubleshooting Guide
 
 ❗ 502 Bad Gateway
 Cause: External API returned 4xx or 5xx
 Fix:
-
 Check external API availability
 Check logs filtered by correlationId
 
 ❗ 500 Internal Server Error
 Cause: Unexpected exception
 Fix:
-
 Inspect logs
 Verify request format
 
 ❗ Logs missing correlationId
 Cause: Missing header
 Fix:
-
 X-Correlation-Id: <uuid>
+
+
 10. Summary
 
 This project is intentionally small but built with real production engineering principles.
