@@ -1,0 +1,4 @@
+com\sathvik\integration\service\ExternalUserService.class
+com\sathvik\integration\IntegrationServiceDemoApplication.class
+com\sathvik\integration\model\ExternalUser.class
+com\sathvik\integration\controller\ExternalUserController.class
